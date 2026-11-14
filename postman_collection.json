@@ -1,0 +1,388 @@
+{
+  "info": {
+    "_postman_id": "a58f1462-574a-476f-b218-6e6a4efd1ec7",
+    "name": "StudySpot Cafe API",
+    "description": "Postman Collection for StudySpot Cafe – Study Carrel Management System (Backend Development Fundamentals Modules 1-3). Contains all 20 required requests categorized by functional module.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Students",
+      "description": "Endpoints for managing student profiles and records",
+      "item": [
+        {
+          "name": "Get all students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["students"]
+            },
+            "description": "Retrieve all registered students from the database"
+          },
+          "response": []
+        },
+        {
+          "name": "Get one student",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/students/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["students", "1"]
+            },
+            "description": "Retrieve a single student by their ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Add student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Emma Watson\",\n  \"email\": \"emma.watson@campus.edu\",\n  \"phone\": \"555-0199\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["students"]
+            },
+            "description": "Register a new student with name, email, and phone"
+          },
+          "response": []
+        },
+        {
+          "name": "Update student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Johnson Updated\",\n  \"email\": \"alice.j@campus.edu\",\n  \"phone\": \"555-0101\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/students/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["students", "1"]
+            },
+            "description": "Update existing student information"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/students/4",
+              "host": ["{{baseUrl}}"],
+              "path": ["students", "4"]
+            },
+            "description": "Delete a student record (only succeeds when no active or past bookings reference them)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Carrels",
+      "description": "Endpoints for managing study carrels and carrel metadata",
+      "item": [
+        {
+          "name": "Get all carrels",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carrels",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels"]
+            },
+            "description": "Retrieve all study carrels"
+          },
+          "response": []
+        },
+        {
+          "name": "Get one carrel",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carrels/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels", "1"]
+            },
+            "description": "Retrieve details of a single study carrel by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Add carrel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Carrel D-01\",\n  \"zone\": \"Media Pod\",\n  \"status\": \"available\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carrels",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels"]
+            },
+            "description": "Create a new study carrel with name, zone, and status"
+          },
+          "response": []
+        },
+        {
+          "name": "Update carrel",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Carrel A-02 Express\",\n  \"zone\": \"Quiet Zone\",\n  \"status\": \"available\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carrels/2",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels", "2"]
+            },
+            "description": "Update carrel details by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete carrel",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carrels/5",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels", "5"]
+            },
+            "description": "Delete a carrel (only permitted when no bookings reference it)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "description": "Endpoints for carrel reservations and detailed reporting",
+      "item": [
+        {
+          "name": "Get all bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings"]
+            },
+            "description": "Retrieve all booking records"
+          },
+          "response": []
+        },
+        {
+          "name": "Get one booking",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings", "1"]
+            },
+            "description": "Retrieve a specific booking by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"student_id\": 2,\n  \"carrel_id\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings"]
+            },
+            "description": "Create a new booking after checking student existence, carrel availability, and active booking conflict"
+          },
+          "response": []
+        },
+        {
+          "name": "Booking details JOIN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/details",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings", "details"]
+            },
+            "description": "Retrieve enriched booking records using a SQL JOIN across bookings, students, and carrels"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Return Flow",
+      "description": "Mandatory Special Assignment Twist: Return handling, idempotency, and history",
+      "item": [
+        {
+          "name": "Return booking",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/1/return",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings", "1", "return"]
+            },
+            "description": "TEST 1: Return an active booking. Sets returned_at and flips carrel status to 'available'. Returns HTTP 200."
+          },
+          "response": []
+        },
+        {
+          "name": "Return the same booking again",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/1/return",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings", "1", "return"]
+            },
+            "description": "TEST 2: Attempting to return an already returned booking. Must return HTTP 409 'Already returned' without overwriting date."
+          },
+          "response": []
+        },
+        {
+          "name": "Student returned-booking history",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/students/1/history",
+              "host": ["{{baseUrl}}"],
+              "path": ["students", "1", "history"]
+            },
+            "description": "TEST 3: Retrieve only returned bookings for student 1 (where returned_at IS NOT NULL), including carrel details."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Validation and Search",
+      "description": "Search features, input validation, and general root endpoint",
+      "item": [
+        {
+          "name": "Root endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Root endpoint providing project overview and interactive API routing directory"
+          },
+          "response": []
+        },
+        {
+          "name": "Search carrels by zone",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carrels?zone=quiet",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels"],
+              "query": [
+                {
+                  "key": "zone",
+                  "value": "quiet",
+                  "description": "Case-insensitive SQL LIKE search query"
+                }
+              ]
+            },
+            "description": "Search carrels by zone name using case-insensitive LIKE"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid carrel creation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"zone\": \"Quiet Zone\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carrels",
+              "host": ["{{baseUrl}}"],
+              "path": ["carrels"]
+            },
+            "description": "Attempt to create a carrel without a required name field, expecting HTTP 400 Bad Request"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
